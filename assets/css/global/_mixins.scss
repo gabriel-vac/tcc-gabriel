@@ -1,0 +1,15 @@
+@mixin size($w:100%,$h:100%){
+    width:$w;
+    height:$h;
+}
+@mixin disp-flex($r:row,$j:center,$a:center){
+    display: flex;
+    flex-direction: $r;
+    justify-content: $j;
+    align-items: $a;
+}
+@mixin reset(){
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+}

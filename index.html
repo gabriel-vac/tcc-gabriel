@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sistema de requisições para compra">
+    <meta name="author" content="Gabriel">
+    <title>Tela principal de acesso as requisições</title>
+   <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.5/css/responsive.jqueryui.min.css">
+   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.jqueryui.min.css">
+   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <link rel="stylesheet" href="assets/css/index/index.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+</head>
+<body>
+    <!-- modal de espera de requisições ajax -->
+    <div class="carregar" id="carregar">
+        <h1>Aguarde</h1>
+        <div class="load"></div>
+    </div>
+    <!-- modal consultar código do projeto -->
+    <div class="modal" id="codproj">
+        <div class="titulo">
+            <div class="subtitulo">
+                <h1>consultar código do projeto</h1>
+            </div>
+            <span id="fechar">&times;</span>
+        </div>
+        <div class="codigomostrar">
+            <label>Código: </label>
+            <label>Subcódigo: </label>
+        </div>
+        <div class="conteudo">
+            <div class="tabela">
+                <table id="tbConsulta">
+                    <thead></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+        <div class="btn-modal">
+            <div class="info">
+                Clique na linha para inserir o código do projeto e o subcódigo de forma automática
+            </div>
+        </div>
+    </div>
+    <!-- modal para consultar requisições -->
+    <div class="modal" id="consultareq">
+        <div class="titulo">
+            <div class="subtitulo">
+                <h1>consultar requisições processadas</h1>
+            </div>
+            <span id="fecharconreq">&times;</span>
+        </div>
+        <div class="codigomostrar">
+            <label>Código: </label>
+            <label>Subcódigo: </label>
+        </div>
+        <div class="conteudo">
+            <div class="tabela">
+                <table id="tbConsultaReq">
+                    <thead></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+        <div class="btn-modal">
+            <div class="info">
+                requisições com status fechado ou em aberto não podem ser apagadas ou editadas
+            </div>
+        </div>
+    </div>
+    <!-- modal para incluir requisições -->
+    <div class="modal" id="incluireq">
+        <div class="titulo">
+            <div class="subtitulo">
+                <h1>incluir requisição</h1>
+            </div>
+            <span id="fecharincreq">&times;</span>
+        </div>
+        <div class="codigomostrar">
+            <label>Código: </label>
+            <label>Subcódigo: </label>
+        </div>
+        <div class="conteudo">
+            <div class="tabela">
+                <table id="tbReq">
+                    <thead></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+        <div class="btn-modal">
+            <div class="info">
+                De um duplo clique na linha para adicionar as informações no item do projeto a ser adicionado
+            </div>
+            <input type="button" value="Cancelar">
+            <input type="button" id="btnOk" value="Ok">
+        </div>
+    </div>
+
+    <!-- modal para adicionar informações referente aos itens de projeto -->
+    <div class="modal" id="incluiItem">
+        <div class="titulo">
+            <div class="subtitulo">
+                <h1>incluir itens</h1>
+            </div>
+            <span id="fecharincitem">&times;</span>
+        </div>
+        <div class="codigomostrar">
+            <label>Código: </label>
+            <label>Subcódigo: </label>
+        </div>
+        <div class="conteudo">
+            <div class="formulario">
+                <input type="hidden"  id="incID" name="incID" disabled class="hide">
+                <div class="line">
+                    <div class="setsup" >
+                        <label>Item de Projeto</label>
+                        <input type="text" disabled>
+                    </div>
+                    <div class="setsup">
+                        <label> Unidade  </label>
+                        <input type="text" disabled>
+                    </div>
+                    <div class="setsup">
+                        <label>  Entrega </label>
+                        <input type="text" disabled>
+                    </div>
+                </div>
+                <div class="line">
+                    <div class="setsup">
+                        <label> Projeto  </label>
+                        <input type="text" disabled>
+                    </div>
+                    <div class="setsup">
+                        <label> Status  </label>
+                        <input type="text" disabled>
+                    </div>
+                    <div class="setsup">
+                        <label for="data">Data</label>
+                        <input type="text" id="Data" readonly>
+                    </div>
+                </div>
+                <div class="line">
+                    <div class="setsup">
+                        <label>  Observações </label>
+                        <input type="text">
+                    </div>
+                    <div class="setsup">
+                        <label> Quantidade  </label>
+                        <input type="text" id="qtde">
+                    </div>
+                    <div class="setsup">
+                        <label>Descrição   </label>
+                        <input type="text">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="btn-modal">
+            <div class="info">
+                Atenção! Os campos quantidade e descrição são obrigatórios
+            </div>
+            <input type="button" value="Cancelar">
+            <input type="button" id="btnAdicionar" value="Adicionar">
+        </div>
+    </div>
+
+    <!-- modal para editar as informações referente aos itens de projeto -->
+    <div class="modal" id="editarItem">
+        <div class="titulo">
+            <div class="subtitulo">
+                <h1>Editar itens</h1>
+            </div>
+            <span id="fechareditaitem">&times;</span>
+        </div>
+        <div class="codigomostrar">
+            <label>Código: </label>
+            <label>Subcódigo: </label>
+        </div>
+        <div class="conteudo">
+            <div class="formulario">
+                <input type="hidden"  id="edID" name="edID" disabled class="hide">
+                <div class="line">
+                    <div class="setsup" >
+                        <label>Item de Projeto</label>
+                        <input type="text" disabled>
+                    </div>
+                    <div class="setsup">
+                        <label> Unidade  </label>
+                        <input type="text" disabled>
+                    </div>
+                    <div class="setsup">
+                        <label>  Entrega </label>
+                        <input type="text" disabled>
+                    </div>
+                </div>
+                <div class="line">
+                    <div class="setsup">
+                        <label> Projeto  </label>
+                        <input type="text" disabled>
+                    </div>
+                    <div class="setsup">
+                        <label> Status  </label>
+                        <input type="text" disabled>
+                    </div>
+                    <div class="setsup">
+                        <label for="data">Data</label>
+                        <input type="text" id="edData" readonly>
+                    </div>
+                </div>
+                <div class="line">
+                    <div class="setsup">
+                        <label>  Observações </label>
+                        <input type="text">
+                    </div>
+                    <div class="setsup">
+                        <label> Quantidade  </label>
+                        <input type="text" id="edqtde">
+                    </div>
+                    <div class="setsup">
+                        <label>Descrição   </label>
+                        <input type="text">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="btn-modal">
+            <div class="info">
+                Atenção! você não pode editar itens com status de reprovado ou ok
+            </div>
+            <input type="button" value="Cancelar">
+            <input type="button" id="btnEditar" value="Editar">
+        </div>
+    </div>
+
+    <header>
+        <nav>
+            <ul>
+                <a href="login.html">
+                    <li>
+                        <img src="assets/imgs/logout_3622.png" alt="">
+                        logout
+                    </li>
+                </a>
+            </ul>
+        </nav>
+    </header>
+    <main class="home">
+        <div class="conteudo-home">
+            <div class="titulo">
+                <h1>Insira o código do projeto e o subcódigo</h1>
+            </div>
+            <div class="form-setup">
+                <label>Projeto:</label>
+                <input type="text">
+            </div>
+            <div class="form-setup">
+                <label>Subprojeto:</label>
+                <input type="text">
+            </div>
+            <div class="form-btn">
+                <input type="button" id="btnIncRec" value="Incluir requisições">
+                <input type="button" id="btnConsultaReq" class="btn-green" value="Consultar requisições">
+            </div>
+            <div class="link">
+                <a href="#" id="consultaproj">Deseja consultar código do projeto e subcódigo do projeto?</a>
+            </div>
+        </div>
+        <div class="images">
+            <img src="assets/imgs/pics/code-2620118_1920.jpg" alt="pics" class="mySlides">
+            <img src="assets/imgs/pics/computer-1209641_1920.jpg" alt="pics" class="mySlides">
+            <img src="assets/imgs/pics/computer-1245714_1920.jpg" alt="pics" class="mySlides">
+            <img src="assets/imgs/pics/home-office-1867761_1920.jpg" alt="pics" class="mySlides">
+            <img src="assets/imgs/pics/ipad-605439_1920.jpg" alt="pics" class="mySlides">
+            <img src="assets/imgs/pics/ipad-820272_1920.jpg" alt="pics" class="mySlides">
+            <img src="assets/imgs/pics/laptop-1478822_1920.jpg" alt="pics" class="mySlides">
+            <img src="assets/imgs/pics/man-791049_1920.jpg" alt="pics" class="mySlides">
+            <img src="assets/imgs/pics/startup-593341_1920.jpg" alt="pics" class="mySlides">
+            <img src="assets/imgs/pics/student-849825_1920.jpg" alt="pics" class="mySlides">
+        </div>
+    </main>
+    <section class="page02">
+        <div class="titulo">
+            <h1>Tabela de inclusão de requisições</h1>
+        </div>
+        <div class="subtitulo">
+            <label>Código: </label>
+            <label>Subcódigo: </label>
+        </div>
+        <div class="conteudo">
+            <div class="tabela">
+                <table id="tbItens">
+                    <thead></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    
+    <script src="https://cdn.datatables.net/responsive/2.2.5/js/responsive.jqueryui.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.5/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.jqueryui.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/modal.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/1.0.9/datepicker.js"></script> -->
+    <script src="assets/js/valida.js"></script>
+    <script src="assets/js/table.js"></script>
+</body>
+</html>

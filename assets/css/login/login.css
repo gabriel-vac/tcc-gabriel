@@ -1,0 +1,184 @@
+@font-face {
+  font-family: 'pops';
+  src: url("./../../fonts/pops/Poppins-Light.ttf");
+}
+
+@font-face {
+  font-family: 'popsbold';
+  src: url("./../../fonts/pops/Poppins-Regular.ttf");
+}
+
+@font-face {
+  font-family: 'popslighter';
+  src: url("./../../fonts/pops/Poppins-Thin.ttf");
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  text-decoration: none;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  font-family: 'pops';
+}
+
+label, input {
+  display: block;
+}
+
+.conteudo {
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  background-image: url("./../../imgs/rewrewe.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.conteudo .formulario {
+  width: 500px;
+  height: 500px;
+  background-color: rgba(0, 0, 0, 0.712);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 50px;
+}
+
+.conteudo .formulario .titulo {
+  width: 100%;
+  height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.conteudo .formulario .titulo img {
+  width: 90px;
+  margin-right: 15px;
+}
+
+.conteudo .formulario .titulo h1 {
+  font-family: 'popslighter';
+  color: whitesmoke;
+  font-weight: lighter;
+  font-size: 4rem;
+}
+
+.conteudo .formulario .form-setup {
+  margin-top: 15px;
+  width: 100%;
+  height: auto;
+}
+
+.conteudo .formulario .form-setup label {
+  color: whitesmoke;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+  font-weight: lighter;
+}
+
+.conteudo .formulario .form-setup input[type="text"], .conteudo .formulario .form-setup input[type="password"] {
+  width: 100%;
+  height: 30px;
+  padding: 5px;
+  background-color: whitesmoke;
+}
+
+.conteudo .formulario .recupera {
+  width: 100%;
+  height: auto;
+  margin-top: 10px;
+}
+
+.conteudo .formulario .recupera a {
+  color: whitesmoke;
+  font-size: 0.8rem;
+}
+
+.conteudo .formulario .recupera a:active {
+  margin-left: 2px;
+  font-size: 0.78rem;
+}
+
+.conteudo .formulario .btn {
+  margin-top: 10px;
+  width: 100%;
+  height: auto;
+}
+
+.conteudo .formulario .btn .btn-primary {
+  background-color: #d41a1a;
+  border: none;
+  width: 100%;
+  height: 30px;
+  color: whitesmoke;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.conteudo .formulario .btn .btn-primary:hover {
+  background-color: #aa1515;
+}
+
+.conteudo .formulario .btn .btn-primary:active {
+  outline-style: solid;
+  outline-width: 1px;
+  outline-color: whitesmoke;
+  height: 28px;
+  -webkit-transform: translateY(2px);
+          transform: translateY(2px);
+}
+
+@media only screen and (max-width: 700px) {
+  .conteudo .formulario {
+    padding: 80px;
+    width: 100vw;
+    height: 100vh;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .conteudo .formulario {
+    padding: 50px;
+  }
+}
+/*# sourceMappingURL=login.css.map */

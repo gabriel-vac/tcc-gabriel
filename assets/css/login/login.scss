@@ -1,0 +1,20 @@
+@import './../global/mixins';
+@import './../global/papabear';
+@import 'login';
+
+@include for-size(700px){
+    .conteudo{
+        .formulario{
+            padding:80px;
+            @include size(100vw,100vh);
+        }
+    }
+}
+
+@include for-size(500px){
+    .conteudo{
+        .formulario{
+            padding:50px;
+        }
+    }
+}

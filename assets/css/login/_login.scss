@@ -1,0 +1,92 @@
+@import './../global/fonts';
+@import './../global/mixins';
+@import './../global/variables';
+
+*{
+    @include reset();
+    text-decoration:none;
+}
+body{
+    @include size(100vw,100vh);
+    font-family: 'pops';
+}
+label,input{
+    display: block;
+}
+.conteudo{
+    @include size();
+    background-color:black;
+    background-image: url('./../../imgs/rewrewe.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    @include disp-flex();
+    .formulario{
+        @include size(500px,500px);
+        background-color: rgba(0, 0, 0, 0.712);
+        @include disp-flex(column,flex-start,center);
+        padding:50px;
+        .titulo{
+            @include size(100%,auto);
+            @include disp-flex();
+            img{
+                width:90px;
+                margin-right:15px;
+            }
+            h1{
+                font-family: 'popslighter';
+                color:whitesmoke;
+                font-weight:lighter;
+                font-size:4rem;
+            }
+        }
+        .form-setup{
+            margin-top:15px;
+            @include size(100%,auto);
+            label{
+                color:whitesmoke;
+                letter-spacing: 1px;
+                margin-bottom:5px;
+                font-weight:lighter;
+            }
+            input[type="text"],input[type="password"]{
+                @include size(100%,30px);
+                padding:5px;
+                background-color:whitesmoke;
+            }
+        }
+        .recupera{
+            @include size(100%,auto);
+            margin-top:10px;
+            a{
+                color:whitesmoke;
+                font-size:0.8rem;
+                &:active{
+                    margin-left:2px;
+                    font-size:0.78rem;
+                }
+            }
+        }
+        .btn{
+            margin-top:10px;
+            @include size(100%,auto);
+            .btn-primary{
+                background-color:$botao;
+                border:none;
+                @include size(100%,30px);
+                color:whitesmoke;
+                text-transform:uppercase;
+                cursor:pointer;
+                &:hover{
+                    background-color: $hover;
+                }
+                &:active{
+                    outline-style:solid;
+                    outline-width: 1px;
+                    outline-color: whitesmoke;
+                    height:28px;
+                    transform:translateY(2px);
+                }
+            }
+        }
+    }
+}

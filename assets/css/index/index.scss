@@ -1,0 +1,105 @@
+@import 'index';
+@import './../global/papabear';
+@import 'modal';
+@import 'page02';
+@import 'carregar';
+
+@include for-size(1200px){
+    .home{
+        .conteudo-home{
+            padding:90px 20px 0px 20px !important;
+        }
+    }
+}
+
+@include for-size(900px){
+    .home{
+        .images{
+            @include size(100%,100px)
+        }
+        flex-direction: column-reverse;
+        .conteudo-home{
+            padding:25px 70px 0px 70px !important;
+            .form-btn{
+                flex-direction: column;
+                input[type="button"]{
+                    &:last-child{
+                        margin-left:0px;
+                        margin-top:5px;
+                    }
+                }
+            }
+            .link{
+                margin-top:-13px;
+                a{
+                    font-size:0.8rem;
+                }
+            }
+        }
+    }
+    // responsividade da pagina 2
+    .page02{
+        padding-top:20px;
+    }
+    // responsividade dos modais
+    .modal{
+
+        .titulo{
+            padding-right:25px;
+            padding-left:20px;
+        }
+        .btn-modal{
+            @include size(100%,15%);
+            @include disp-flex(row,flex-start,center);
+            margin:0px;
+            padding:0px;
+            // background-color:black;
+            input[type="button"]{
+                @include size(95px,35px);
+                margin-right:20px !important;
+            }
+            .info{
+                @include size(50%,100%);
+                @include disp-flex();
+                padding:0px;
+                padding-left:10px;
+                margin-right:20px;
+            }
+        }
+        .conteudo{
+            .formulario{
+                .line{
+                    flex-direction: column;
+                    padding:0px;
+                    height:auto;
+                    .setsup{
+                        border:none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include for-size(500px){
+    // responsividade da tela principal
+    .home{
+        .images{
+            display: none !important;
+        }
+        .conteudo-home{
+            padding:90px 50px 0px 50px !important;
+            .titulo{
+                margin-bottom:30px;
+            }
+        }
+    }
+    // responsividade dos modais
+    .modal{
+        .btn-modal{
+            .info{
+                font-size:0.8rem;
+            }
+        }
+    }
+}

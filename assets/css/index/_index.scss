@@ -1,0 +1,126 @@
+@import './../global/fonts';
+@import './../global/mixins';
+@import './../global/variables';
+
+*{
+    @include reset();
+    text-decoration:none;
+    list-style: none;
+}
+label,input{display: block;}
+img {vertical-align: middle;}
+body{
+    font-family: 'pops';
+    @include size(100%,200vh);
+    color: $texto;
+    background-color:$fundo;
+}
+header{
+    @include size(100%,10vh);
+    box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.123);
+    // background-color:rgba(0, 0, 0, 0.445);
+    background-color:rgba(245, 245, 245, 0.76);
+    box-shadow:2px 2px 30px rgba(0, 0, 0, 0.178);
+    @include disp-flex(row, flex-end, center);
+    // position:absolute;
+    position: fixed;
+    top:0;
+    right:0;
+    left:0;
+    nav{
+        @include disp-flex();
+        @include size(20%,100%);
+        ul{
+            a{
+                color:$texto;
+                li{
+                    @include disp-flex();
+                    img{
+                        width:18px;
+                        margin-right:5px;
+                        opacity: 0.55;
+                    }
+                    margin-right:10px;
+                }
+            }
+        }
+    }
+}
+.home{
+    @include size(100%,50%);
+    @include disp-flex();
+    .conteudo-home{
+        flex:1;
+        padding:140px 150px;
+        @include size(100%,100%);
+        @include disp-flex(column,flex-start,center);
+        h1{
+            color:$texto;
+            margin-bottom:5px;
+        }
+        .form-setup{
+            @include size(100%,auto);
+            margin-bottom:10px;
+            label{
+                letter-spacing: 1px;
+                font-family: 'popsbold';
+                margin-bottom:5px;
+            }
+            input[type="text"]{
+                @include size(100%,30px);
+                padding:5px;
+                border:1px solid $texto;;
+                background-color:transparent;
+                &:focus{outline:none;}
+            }
+        }
+        .form-btn{
+            @include size(100%,auto);
+            margin-top:10px;
+            @include disp-flex(column,center,center);
+            input[type="button"]{
+                @include size(100%,30px);
+                border:none;
+                background-color:rgb(29, 137, 145);
+                color:white;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                cursor:pointer;
+                margin-bottom:15px;
+                &:focus{
+                    outline:none;
+                }
+                &:active{
+                    transform:translateY(0.5px)
+                }
+            }
+            .btn-green{
+                background-color:transparent !important;
+                color:rgb(29, 137, 145) !important;
+                border: 1px solid rgb(29, 137, 145) !important;
+            }
+        }
+        .link{
+            @include size(100%,35px);
+            cursor:pointer;
+            a{
+                color:$texto;
+                &:hover{
+                    color:$red;
+                }
+            }
+        }
+    }
+    .images{
+        flex:2;
+        @include size();
+        background-color:rgb(17, 137, 153);
+        @include disp-flex();
+        img{
+            // width:350px;
+            width:100%;
+            height:100%;
+        }
+
+    }
+}

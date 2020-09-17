@@ -1,0 +1,27 @@
+.page02{
+    @include size(100%,46%);
+    margin-top:5%;
+    @include disp-flex(column,flex-start,center);
+    .titulo{
+        @include size(100%,auto);
+        padding:50px 50px 10px 50px;
+        h1{
+            border-left:3px solid rgba(0, 0, 0, 0.589);
+            padding-left:15px;
+        }
+    }
+    .subtitulo{
+        @include size(100%,auto);
+        @include disp-flex(column,center,flex-start);
+        padding:15px 60px;
+        background-color:whitesmoke;
+    }
+    .conteudo{
+        @include size(100%,auto);
+        padding:10px 80px;
+        .tabela{
+            @include size();
+            display: block;
+        }
+    }
+}
